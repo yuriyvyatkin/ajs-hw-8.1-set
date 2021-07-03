@@ -1,50 +1,54 @@
 import Character from '../Character';
 import Team from '../Team';
 
-const lev = new Character('lev');
+let lev;
 
-test('class «Character» exists and has the «name» property', () => {
-  expect(typeof lev).toBe('object');
+test('class "Character" exists and has the "name" property', () => {
+  expect(new Character()).toBeDefined();
+
+  lev = new Character('lev');
+
   expect(lev.name).toBe('lev');
+});
+
+test('class "Team" exists', () => {
+  expect(new Team()).toBeDefined();
 });
 
 const team = new Team();
 
-test('class «Team» exists and has «add», «addAll», «toArray» methods', () => {
-  expect(typeof team).toBe('object');
-  expect(typeof team.add).toBe('function');
-  expect(typeof team.addAll).toBe('function');
-  expect(typeof team.toArray).toBe('function');
+test('class "Team" has the "members" property with Set object', () => {
+  expect(team.members).toBeDefined();
+  expect(team.members instanceof Set).toBeTruthy();
 });
 
-team.add(lev);
+test('class "Team" has working "add" method', () => {
+  expect(typeof team.add).toBe('function');
 
-test('method «add» of class «Team» works correctly', () => {
+  team.add(lev);
+
   expect(team.members).toEqual(new Set([lev]));
 
   const error = () => team.add(lev);
 
-  expect(error).toThrow(
-    `Ошибка. Объект ${lev} уже добавлен!`,
-  );
+  expect(error).toThrow(`Ошибка. Объект ${lev} уже добавлен!`);
 });
 
-const extendedTeam = new Team();
-const vladimir = new Character('vladimir');
-const victor = new Character('victor');
+test('class "Team" has working "addAll" method', () => {
+  expect(typeof team.addAll).toBe('function');
 
-extendedTeam.addAll(lev, vladimir, victor);
+  const vladimir = new Character('vladimir');
+  const victor = new Character('victor');
 
-test('method «addAll» of class «Team» works correctly', () => {
-  expect(extendedTeam.members).toEqual(new Set([lev, vladimir, victor]));
+  team.addAll(vladimir, victor);
 
-  const error = () => extendedTeam.addAll(lev);
+  expect(team.members).toEqual(new Set([lev, vladimir, victor]));
 
-  expect(error).toThrow(
-    `Ошибка. Объект ${lev} уже добавлен!`,
-  );
+  const error = () => team.addAll(lev);
+
+  expect(error).toThrow(`Ошибка. Объект ${lev} уже добавлен!`);
 });
 
-test('method «toArray» of class «Team» works correctly', () => {
-  expect(Array.from(extendedTeam.members)).toEqual(extendedTeam.toArray());
+test('class "Team" has working "toArray" method', () => {
+  expect(Array.from(team.members)).toEqual(team.toArray());
 });
