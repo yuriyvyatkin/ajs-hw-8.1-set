@@ -1,5 +1,5 @@
-import Character from './character';
-import Team from './team';
+import Character from './Character';
+import Team from './Team';
 
 const lev = new Character('lev');
 
