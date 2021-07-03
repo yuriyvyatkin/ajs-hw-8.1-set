@@ -17,7 +17,7 @@ export default class Team {
         throw new Error(`Ошибка. Объект ${member} уже добавлен!`);
       }
 
-      this.add(member);
+      this.members.add(member);
     });
   }
 
