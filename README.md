@@ -1,6 +1,6 @@
 # Домашнее задание №1 к лекции «Контейнеры»
 
-[![Build Status](https://travis-ci.com/yuriyvyatkin/ajs-hw-8.1-set.svg?branch=master)](https://travis-ci.com/yuriyvyatkin/ajs-hw-8.1-set)
+[![Build status](https://ci.appveyor.com/api/projects/status/3srxgqxckm1sf3gm?svg=true)](https://ci.appveyor.com/project/yuriyvyatkin/ajs-hw-8-1-set)
 
 ## `Set`
 
