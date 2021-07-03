@@ -1,0 +1,17 @@
+os: linux
+arch:
+  - arm64
+  - ppc64le
+  - s390x
+
+language: node_js
+node_js: 12
+
+branches:
+  only: master
+
+cache: yarn
+
+install: yarn install
+
+script: yarn lint && yarn test
