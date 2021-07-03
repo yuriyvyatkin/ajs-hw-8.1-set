@@ -18,20 +18,31 @@ test('class «Team» exists and has «add», «addAll», «toArray» methods', (
 });
 
 team.add(lev);
-team.add(lev);
 
 test('method «add» of class «Team» works correctly', () => {
   expect(team.members).toEqual(new Set([lev]));
+
+  const error = () => team.add(lev);
+
+  expect(error).toThrow(
+    `Ошибка. Объект ${lev} уже добавлен!`,
+  );
 });
 
 const extendedTeam = new Team();
 const vladimir = new Character('vladimir');
 const victor = new Character('victor');
 
-extendedTeam.addAll(lev, vladimir, victor, victor);
+extendedTeam.addAll(lev, vladimir, victor);
 
 test('method «addAll» of class «Team» works correctly', () => {
-  expect(extendedTeam.members).toEqual(new Set([lev, vladimir, victor, victor]));
+  expect(extendedTeam.members).toEqual(new Set([lev, vladimir, victor]));
+
+  const error = () => extendedTeam.addAll(lev);
+
+  expect(error).toThrow(
+    `Ошибка. Объект ${lev} уже добавлен!`,
+  );
 });
 
 test('method «toArray» of class «Team» works correctly', () => {
